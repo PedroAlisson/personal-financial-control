@@ -15,10 +15,7 @@ class Invests {
   id: string;
   @Column()
   name: string;
-
-  @ManyToOne(() => Users, (user) => user.id)
-  user: Users;
-
+  @ManyToOne(() => Users, (user) => user.id) user: Users;
   @Column()
   mes: Date;
   @Column()
