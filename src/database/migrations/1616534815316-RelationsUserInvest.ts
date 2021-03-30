@@ -28,7 +28,7 @@ export class RelationsUserInvest1616534815316 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn("invests", "user_id");
     await queryRunner.dropForeignKey("invests", "FkUsers");
+    await queryRunner.dropColumn("invests", "user_id");
   }
 }

@@ -11,6 +11,7 @@ export class CreateInvest1616534368709 implements MigrationInterface {
             type: "uuid",
             isPrimary: true,
             generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
             name: "name",
@@ -26,15 +27,16 @@ export class CreateInvest1616534368709 implements MigrationInterface {
           },
           {
             name: "data",
-            type: "timestamp with time zone",
-          },
-          {
-            name: "created_at",
             type: "timestamp",
             default: "now()",
           },
           {
-            name: "updated_at",
+            name: "create_at",
+            type: "timestamp",
+            default: "now()",
+          },
+          {
+            name: "update_at",
             type: "timestamp",
             default: "now()",
           },

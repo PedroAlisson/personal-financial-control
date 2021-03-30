@@ -7,20 +7,23 @@ import {
 } from "typeorm";
 
 @Entity("users")
-class Users {
+class User {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  readonly id: "uuid";
+
   @Column()
   name: string;
+
   @Column()
   email: string;
+
   @Column()
   password: string;
-  @Column("timestamp with time zone")
-  date: Date;
+
   @CreateDateColumn()
-  created_at: Date;
+  create_at: Date;
+
   @UpdateDateColumn()
-  updated_at: Date;
+  update_at: Date;
 }
-export default Users;
+export default User;

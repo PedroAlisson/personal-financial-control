@@ -4,27 +4,39 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
-import Users from "./user";
+import User from "./User";
 
 @Entity("invests")
 class Invests {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  id: "uuid";
+
   @Column()
   name: string;
-  @ManyToOne(() => Users, (user) => user.id) user: Users;
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: "user_id" })
+  user: User;
+
   @Column()
   mes: Date;
+
   @Column()
   value: number;
-  @Column("timestamp with time zone")
+
+  @Column()
   date: Date;
+
   @CreateDateColumn()
-  created_at: Date;
+  create_at: Date;
+
   @UpdateDateColumn()
-  updated_at: Date;
+  update_at: Date;
 }
 export default Invests;
