@@ -12,6 +12,7 @@ export class RelationsUserInvest1616534815316 implements MigrationInterface {
       new TableColumn({
         name: "user_id",
         type: "uuid",
+        isNullable: true,
       })
     );
 
@@ -23,6 +24,7 @@ export class RelationsUserInvest1616534815316 implements MigrationInterface {
         referencedColumnNames: ["id"],
         referencedTableName: "users",
         onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       })
     );
   }

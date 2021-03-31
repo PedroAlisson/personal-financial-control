@@ -19,7 +19,7 @@ export class CreateInvest1616534368709 implements MigrationInterface {
           },
           {
             name: "mes",
-            type: "timestamp",
+            type: "varchar",
           },
           {
             name: "value",
@@ -27,8 +27,7 @@ export class CreateInvest1616534368709 implements MigrationInterface {
           },
           {
             name: "data",
-            type: "timestamp",
-            default: "now()",
+            type: "timestamp with time zone",
           },
           {
             name: "create_at",

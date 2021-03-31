@@ -25,12 +25,12 @@ class Invests {
   user: User;
 
   @Column()
-  mes: Date;
+  mes: string;
 
   @Column()
   value: number;
 
-  @Column()
+  @Column("timestamp with time zone")
   date: Date;
 
   @CreateDateColumn()

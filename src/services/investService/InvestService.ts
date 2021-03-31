@@ -6,6 +6,7 @@ interface Request {
     name: string;
     mes: string;
     value: number;
+    date: Date;
 }
 
 interface RequestUpdate {
@@ -26,6 +27,7 @@ class InvestService {
         mes,
         value,
         user_id,
+        date,
     }: Request): Promise<Invest> {
         const investRepository = getRepository(Invest);
 
@@ -34,6 +36,7 @@ class InvestService {
             mes,
             user_id,
             value,
+            date,
         });
 
         await investRepository.save(invest);
@@ -41,7 +44,7 @@ class InvestService {
         return invest;
     }
 
-    public async RemoveUserService({ id }: RequestDelete): Promise<void> {
+    public async RemoveInvestService({ id }: RequestDelete): Promise<void> {
         const investRepository = getRepository(Invest);
 
         const checkUserId = investRepository.findOne({
@@ -57,7 +60,7 @@ class InvestService {
         return;
     }
 
-    public async UpdateUserService({
+    public async UpdateInvestService({
         id,
         name,
         mes,
