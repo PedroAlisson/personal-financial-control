@@ -17,6 +17,7 @@ routerUser.post("/", async (request: Request, response: Response) => {
     email,
     password,
   });
+  delete user.password;
   return response.json(user);
 });
 
