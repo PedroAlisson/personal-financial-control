@@ -1,18 +1,18 @@
 import { Request, Response, Router } from "express";
 import InvestService from "../services/investService/InvestService";
-import { parseISO } from "date-fns";
+import ensureAuthenticated from "../middlewares/ensureAutenticated";
 
 const routerInvest = Router();
+
+routerInvest.use(ensureAuthenticated);
+
 routerInvest.get("/", (request: Request, response: Response) => {
   response.json({ ok: "invest" });
 });
 
 routerInvest.post("/", async (request: Request, response: Response) => {
   const { name, mes, value, user_id, date } = request.body;
-  console.log("Date:", date);
   const investService = new InvestService();
-  //  const parsedDate = parseISO(date);
-  //  console.log("Date Pars:", parsedDate);
   const invest = await investService.execute({
     name,
     mes,
