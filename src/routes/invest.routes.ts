@@ -6,8 +6,15 @@ const routerInvest = Router();
 
 routerInvest.use(ensureAuthenticated);
 
-routerInvest.get("/", (request: Request, response: Response) => {
-  response.json({ ok: "invest" });
+routerInvest.get("/", async (request: Request, response: Response) => {
+  const user_id = request.user.id;
+  console.log(user_id);
+  const listInvestService = new InvestService();
+
+  const check = await listInvestService.ListInvestService({
+    user_id,
+  });
+  return response.json(check);
 });
 
 routerInvest.post("/", async (request: Request, response: Response) => {

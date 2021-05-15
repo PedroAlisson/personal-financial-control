@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from "express";
+import cors from "cors";
 import "./database";
 
 import router from "./routes/routes";
@@ -8,6 +9,7 @@ import routesInvest from "./routes/invest.routes";
 import routesSessions from "./routes/sessions.routes";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(router);
 app.use("/users", routesUsers);

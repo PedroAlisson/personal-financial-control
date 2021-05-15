@@ -9,6 +9,10 @@ interface Request {
     date: Date;
 }
 
+interface ListInv {
+    user_id: string;
+}
+
 interface RequestUpdate {
     id: string;
     name: string;
@@ -87,6 +91,20 @@ class InvestService {
         await investRepository.update(id, userUpdate);
 
         return userUpdate;
+    }
+
+    public async ListInvestService({ user_id }: ListInv): Promise<Invest> {
+        const investRepository = getRepository(Invest);
+
+        const checkInvest = await investRepository.find({
+            where: { user_id },
+        });
+        if (!checkInvest) {
+            throw new Error("Invest Not Found");
+        }
+        console.log(checkInvest);
+
+        return checkInvest;
     }
 }
 
