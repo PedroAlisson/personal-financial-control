@@ -8,7 +8,6 @@ routerInvest.use(ensureAuthenticated);
 
 routerInvest.get("/", async (request: Request, response: Response) => {
   const user_id = request.user.id;
-  console.log(user_id);
   const listInvestService = new InvestService();
 
   const check = await listInvestService.ListInvestService({
@@ -25,7 +24,6 @@ routerInvest.post("/", async (request: Request, response: Response) => {
     mes,
     value,
     user_id,
-    // date: parsedDate,
     date,
   });
 
