@@ -1,3 +1,4 @@
+import { format, getDate } from "date-fns";
 import { getRepository } from "typeorm";
 import Invest from "../../models/Invest";
 
@@ -102,8 +103,11 @@ class InvestService {
         if (!checkInvest) {
             throw new Error("Invest Not Found");
         }
-        console.log(checkInvest);
-
+        /* const [Invests] = checkInvest;
+        const date = Invests.date;
+        const novadate = format(new Date(date), "MM/dd/yyy");
+        Invests.date = novadate;
+        */
         return checkInvest;
     }
 }
