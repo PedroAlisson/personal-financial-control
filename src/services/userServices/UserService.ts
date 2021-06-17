@@ -15,7 +15,7 @@ interface RequestUpdate {
     password: string;
 }
 
-interface RequestDelete {
+interface RequestUser {
     id: string;
 }
 
@@ -71,7 +71,7 @@ class UserService {
         return userUpdate;
     }
 
-    public async RemoveUserService({ id }: RequestDelete): Promise<void> {
+    public async RemoveUserService({ id }: RequestUser): Promise<void> {
         const usersRepositoryRemove = getRepository(User);
 
         const checkUserId = usersRepositoryRemove.findOne({
@@ -85,6 +85,20 @@ class UserService {
         await usersRepositoryRemove.delete(id);
 
         return;
+    }
+
+    public async ListUserService({ id }: RequestUser): Promise<User> {
+        const usersRepositoryFind = getRepository(User);
+
+        const checkUserId = usersRepositoryFind.findOne({
+            where: { id },
+        });
+
+        if (!checkUserId) {
+            throw new Error("Id Not Found for Users");
+        }
+
+        return checkUserId;
     }
 }
 

@@ -103,11 +103,6 @@ class InvestService {
         if (!checkInvest) {
             throw new Error("Invest Not Found");
         }
-        /* const [Invests] = checkInvest;
-        const date = Invests.date;
-        const novadate = format(new Date(date), "MM/dd/yyy");
-        Invests.date = novadate;
-        */
         return checkInvest;
     }
 }

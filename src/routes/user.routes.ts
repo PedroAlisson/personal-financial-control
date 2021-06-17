@@ -1,11 +1,21 @@
 import { Request, Response, Router } from "express";
 
 import UserService from "../services/userServices/UserService";
+import ensureAuthenticated from "../middlewares/ensureAutenticated";
 
 const routerUser = Router();
+routerUser.use(ensureAuthenticated);
 
-routerUser.get("/", (request: Request, response: Response) => {
-  response.json({ ok: "user" });
+routerUser.get("/", async (request: Request, response: Response) => {
+  const id = request.user.id;
+
+  const findUserService = new UserService();
+
+  const findUser = await findUserService.ListUserService({
+    id,
+  });
+
+  return response.json(findUser);
 });
 
 routerUser.post("/", async (request: Request, response: Response) => {
