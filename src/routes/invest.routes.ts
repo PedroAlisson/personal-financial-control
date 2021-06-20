@@ -17,7 +17,7 @@ routerInvest.get("/", async (request: Request, response: Response) => {
 });
 
 routerInvest.post("/", async (request: Request, response: Response) => {
-  const { name, mes, value, user_id, date } = request.body;
+  const { name, mes, value, user_id, date, amount } = request.body;
   const investService = new InvestService();
   const invest = await investService.execute({
     name,
@@ -25,6 +25,7 @@ routerInvest.post("/", async (request: Request, response: Response) => {
     value,
     user_id,
     date,
+    amount,
   });
 
   return response.json(invest);

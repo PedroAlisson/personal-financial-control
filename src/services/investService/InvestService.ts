@@ -1,4 +1,3 @@
-import { format, getDate } from "date-fns";
 import { getRepository } from "typeorm";
 import Invest from "../../models/Invest";
 
@@ -8,6 +7,7 @@ interface Request {
     mes: string;
     value: number;
     date: Date;
+    amount: number;
 }
 
 interface ListInv {
@@ -33,8 +33,11 @@ class InvestService {
         value,
         user_id,
         date,
+        amount,
     }: Request): Promise<Invest> {
         const investRepository = getRepository(Invest);
+
+        const total = amount * value;
 
         const invest = investRepository.create({
             name,
@@ -42,6 +45,8 @@ class InvestService {
             user_id,
             value,
             date,
+            amount,
+            total,
         });
 
         await investRepository.save(invest);

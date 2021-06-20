@@ -28,10 +28,13 @@ class Bills {
   status: string;
 
   @Column()
-  value: number;
+  mes: string;
 
-  @Column("timestamp with time zone")
+  @Column()
   date: Date;
+
+  @Column()
+  value: number;
 
   @CreateDateColumn()
   create_at: Date;

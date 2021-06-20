@@ -30,6 +30,12 @@ class Invests {
   @Column()
   value: number;
 
+  @Column()
+  amount: number;
+
+  @Column()
+  total: number;
+
   @Column("timestamp with time zone")
   date: Date;
 
