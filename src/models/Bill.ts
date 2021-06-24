@@ -30,7 +30,7 @@ class Bills {
   @Column()
   mes: string;
 
-  @Column()
+  @Column("timestamp with time zone")
   date: Date;
 
   @Column()

@@ -6,7 +6,8 @@ export class AddDateBills1624120945056 implements MigrationInterface {
       "bills",
       new TableColumn({
         name: "date",
-        type: "varchar",
+        type: "timestamp with time zone",
+        isNullable: true,
       })
     );
   }
