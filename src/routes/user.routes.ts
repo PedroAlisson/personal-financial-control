@@ -4,19 +4,22 @@ import UserService from "../services/userServices/UserService";
 import ensureAuthenticated from "../middlewares/ensureAutenticated";
 
 const routerUser = Router();
-routerUser.use(ensureAuthenticated);
 
-routerUser.get("/", async (request: Request, response: Response) => {
-  const id = request.user.id;
+routerUser.get(
+  "/",
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const id = request.user.id;
 
-  const findUserService = new UserService();
+    const findUserService = new UserService();
 
-  const findUser = await findUserService.ListUserService({
-    id,
-  });
+    const findUser = await findUserService.ListUserService({
+      id,
+    });
 
-  return response.json(findUser);
-});
+    return response.json(findUser);
+  }
+);
 
 routerUser.post("/", async (request: Request, response: Response) => {
   const { name, email, password } = request.body;
@@ -31,20 +34,24 @@ routerUser.post("/", async (request: Request, response: Response) => {
   return response.json(user);
 });
 
-routerUser.put("/:id", async (request: Request, response: Response) => {
-  const { id } = request.params;
-  const { name, email, password } = request.body;
+routerUser.put(
+  "/:id",
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const { id } = request.params;
+    const { name, email, password } = request.body;
 
-  const updateUser = new UserService();
+    const updateUser = new UserService();
 
-  const user = await updateUser.UpdateUserService({
-    id,
-    name,
-    email,
-    password,
-  });
-  return response.json(user);
-});
+    const user = await updateUser.UpdateUserService({
+      id,
+      name,
+      email,
+      password,
+    });
+    return response.json(user);
+  }
+);
 
 routerUser.delete("/:id", async (request: Request, response: Response) => {
   const { id } = request.params;
