@@ -16,6 +16,16 @@ routerBill.get("/", async (request: Request, response: Response) => {
   return response.json(check);
 });
 
+routerBill.get("/:id", async (request: Request, response: Response) => {
+  const { id } = request.params;
+  const listBillService = new BillService();
+
+  const check = await listBillService.FindBillService({
+    id,
+  });
+  return response.json(check);
+});
+
 routerBill.post("/", async (request: Request, response: Response) => {
   const user_id = request.user.id;
   const { name, status, value, date, mes } = request.body;

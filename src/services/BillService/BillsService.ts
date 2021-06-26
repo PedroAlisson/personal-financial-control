@@ -111,6 +111,18 @@ class BillService {
         }
         return checkBill;
     }
+
+    public async FindBillService({ id }: RequestDelete): Promise<Bill> {
+        const investRepository = getRepository(Bill);
+
+        const checkInvest = await investRepository.find({
+            where: { id },
+        });
+        if (!checkInvest) {
+            throw new Error("Bills Not Found");
+        }
+        return checkInvest;
+    }
 }
 
 export default BillService;
