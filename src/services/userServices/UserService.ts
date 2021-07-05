@@ -60,10 +60,12 @@ class UserService {
             throw new Error("Id Not Found for Users");
         }
 
+        const hashPassword = await hash(password, 8);
+
         const userUpdate = usersRepositoryUpdate.create({
             name,
             email,
-            password,
+            password: hashPassword,
         });
 
         await usersRepositoryUpdate.update(id, userUpdate);
