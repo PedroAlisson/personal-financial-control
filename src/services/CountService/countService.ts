@@ -19,7 +19,25 @@ class CountService {
             where: { user_id },
         });
 
-        return { resultsInvest, resultsBill };
+        const resultsInvestTotal = await investRepository.find({
+            where: { user_id },
+        });
+
+        const SumTotalInvest = resultsInvestTotal.reduce(
+            (valor, item) => valor + item.total,
+            0
+        );
+
+        const resultsBillTotal = await billRepository.find({
+            where: { user_id },
+        });
+
+        const SumTotalBill = resultsBillTotal.reduce(
+            (value, item) => value + item.value,
+            0
+        );
+
+        return { resultsInvest, resultsBill, SumTotalInvest, SumTotalBill };
     }
 }
 
