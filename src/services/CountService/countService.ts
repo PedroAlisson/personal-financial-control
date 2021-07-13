@@ -33,7 +33,8 @@ class CountService {
         });
 
         const SumTotalBill = resultsBillTotal.reduce(
-            (value, item) => value + item.value,
+            (value, item) =>
+                value + parseFloat(item.value.replace(/[^\d\.]/, "")),
             0
         );
 
