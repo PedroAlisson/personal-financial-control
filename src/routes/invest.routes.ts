@@ -33,7 +33,7 @@ routerInvest.post("/", async (request: Request, response: Response) => {
 
 routerInvest.put("/:id", async (request: Request, response: Response) => {
   const { id } = request.params;
-  const { name, mes, value, date } = request.body;
+  const { name, mes, value, date, amount } = request.body;
 
   const updateInvest = new InvestService();
 
@@ -42,6 +42,7 @@ routerInvest.put("/:id", async (request: Request, response: Response) => {
     mes,
     value,
     date,
+    amount,
     id,
   });
   return response.json(invest);

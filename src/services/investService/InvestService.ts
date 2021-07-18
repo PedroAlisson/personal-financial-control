@@ -20,6 +20,7 @@ interface RequestUpdate {
     mes: string;
     value: number;
     date?: Date;
+    amount: number;
 }
 
 interface RequestDelete {
@@ -76,6 +77,7 @@ class InvestService {
         mes,
         value,
         date,
+        amount,
     }: RequestUpdate): Promise<Invest> {
         const investRepository = getRepository(Invest);
 
@@ -87,11 +89,15 @@ class InvestService {
             throw new Error("Id Not Found for Users");
         }
 
+        const total = amount * value;
+
         const userUpdate = investRepository.create({
             name,
             mes,
             value,
             date,
+            amount,
+            total,
         });
 
         await investRepository.update(id, userUpdate);
